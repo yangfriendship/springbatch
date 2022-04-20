@@ -25,10 +25,7 @@ public class JobRunner implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
         JobParameters parameter = new JobParametersBuilder()
-            .addString("name", "youzheng4")
             .addDate("date", new Date())
-            .addDouble("double", 3.3d)
-            .addLong("long", 100L)
             .toJobParameters();
         jobLauncher.run(job, parameter);
     }

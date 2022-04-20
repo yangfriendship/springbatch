@@ -1,4 +1,4 @@
-package me.youzheng.springbatch;
+package me.youzheng.springbatch.job;
 
 import java.util.Map;
 import java.util.Map.Entry;
@@ -13,14 +13,14 @@ import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration
+//@Configuration
 @RequiredArgsConstructor
 public class JobInstanceConfiguration {
 
     private final JobBuilderFactory jobBuilderFactory;
     private final StepBuilderFactory stepBuilderFactory;
 
-    @Bean
+    //@Bean
     public Job job() {
         return jobBuilderFactory.get("job")
             .start(step1())
@@ -32,7 +32,7 @@ public class JobInstanceConfiguration {
      * contribution 를 통해서 JobParameters 에 접근할 수 있다.
      * contribution -> StepExecution -> JobExecution -> JobParameters
      * */
-    @Bean
+    //@Bean
     public Step step1() {
         return this.stepBuilderFactory.get("step1")
             .tasklet((contribution, chunkContext) -> {
@@ -55,7 +55,7 @@ public class JobInstanceConfiguration {
     * chunkContext 를 통해서도 JobParameter 에 접근 할 수 있다.
      * StepContext.getJobParameters 를 통해서 바로 Map<String,Object> 타입의 파라미터 키,값을 얻을 수 있다.
     * */
-    @Bean
+    //@Bean
     public Step step2() {
         return this.stepBuilderFactory.get("step2")
             .tasklet((contribution, chunkContext) -> {
