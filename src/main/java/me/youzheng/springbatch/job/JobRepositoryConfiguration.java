@@ -16,11 +16,12 @@ import org.springframework.context.annotation.Configuration;
 
 //@Configuration
 @RequiredArgsConstructor
-public class JobInstanceConfiguration {
+public class JobRepositoryConfiguration {
 
     private final JobBuilderFactory jobBuilderFactory;
     private final StepBuilderFactory stepBuilderFactory;
     private final JobRepositoryListener jobRepositoryListener;
+
     //@Bean
     public Job job() {
         return jobBuilderFactory.get("job")

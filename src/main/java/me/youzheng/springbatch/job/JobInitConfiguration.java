@@ -3,38 +3,44 @@ package me.youzheng.springbatch.job;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
-import lombok.RequiredArgsConstructor;
 import me.youzheng.springbatch.listener.JobRepositoryListener;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobParameter;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
+import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-//@Configuration
-@RequiredArgsConstructor
-public class JobInstanceConfiguration {
 
+@Configuration
+public class JobInitConfiguration {
     private final JobBuilderFactory jobBuilderFactory;
     private final StepBuilderFactory stepBuilderFactory;
     private final JobRepositoryListener jobRepositoryListener;
-    //@Bean
-    public Job job() {
-        return jobBuilderFactory.get("job")
+
+    public JobInitConfiguration(
+        JobBuilderFactory jobBuilderFactory,
+        StepBuilderFactory stepBuilderFactory,
+        JobRepositoryListener jobRepositoryListener) {
+        this.jobBuilderFactory = jobBuilderFactory;
+        this.stepBuilderFactory = stepBuilderFactory;
+        this.jobRepositoryListener = jobRepositoryListener;
+    }
+
+    @Bean
+    public Job batchJob1() {
+        return jobBuilderFactory.get("batchJob1")
+            .incrementer(new RunIdIncrementer())
             .start(step1())
             .next(step2())
             .listener(this.jobRepositoryListener)
             .build();
     }
 
-    /**
-     * contribution 를 통해서 JobParameters 에 접근할 수 있다.
-     * contribution -> StepExecution -> JobExecution -> JobParameters
-     * */
-    //@Bean
+    @Bean
     public Step step1() {
         return this.stepBuilderFactory.get("step1")
             .tasklet((contribution, chunkContext) -> {
@@ -52,12 +58,7 @@ public class JobInstanceConfiguration {
             ;
     }
 
-
-    /**
-    * chunkContext 를 통해서도 JobParameter 에 접근 할 수 있다.
-     * StepContext.getJobParameters 를 통해서 바로 Map<String,Object> 타입의 파라미터 키,값을 얻을 수 있다.
-    * */
-    //@Bean
+    @Bean
     public Step step2() {
         return this.stepBuilderFactory.get("step2")
             .tasklet((contribution, chunkContext) -> {
@@ -72,11 +73,5 @@ public class JobInstanceConfiguration {
                 return RepeatStatus.FINISHED;
             }).build();
     }
-
-    /**
-     * CommandLineArguments 로 JobParameter 을 넘길 수 있다.
-     * {key}(type)={value} ex) rate(double)=0.2
-     * date 의 구분자는 '/' ex) 2022/01/01
-     * */
 
 }
