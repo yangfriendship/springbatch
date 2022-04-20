@@ -29,7 +29,9 @@ spring:
       jdbc-url: jdbc:mysql://localhost:3306/springbatch
       username: root
       password: dnwjd123
-      driver-class-name: com.mysql.jdbc.Driver
+      driver-class-name: com.mysql.cj.jdbc.Driver
   batch:
     jdbc:
-      initialize-schema: always
+      initialize-schema: never
+    job:
+      enabled: false
