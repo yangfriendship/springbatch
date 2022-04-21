@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 
-@Configuration
+//@Configuration
 public class JobInitConfiguration {
     private final JobBuilderFactory jobBuilderFactory;
     private final StepBuilderFactory stepBuilderFactory;
@@ -30,7 +30,7 @@ public class JobInitConfiguration {
         this.jobRepositoryListener = jobRepositoryListener;
     }
 
-    @Bean
+    //@Bean
     public Job batchJob1() {
         return jobBuilderFactory.get("batchJob1")
             .incrementer(new RunIdIncrementer())
@@ -40,7 +40,7 @@ public class JobInitConfiguration {
             .build();
     }
 
-    @Bean
+    //@Bean
     public Step step1() {
         return this.stepBuilderFactory.get("step1")
             .tasklet((contribution, chunkContext) -> {
@@ -58,7 +58,7 @@ public class JobInitConfiguration {
             ;
     }
 
-    @Bean
+    //@Bean
     public Step step2() {
         return this.stepBuilderFactory.get("step2")
             .tasklet((contribution, chunkContext) -> {
