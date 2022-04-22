@@ -40,7 +40,7 @@ public class JobParametersIncrementConfig {
         @Override
         public JobParameters getNext(JobParameters parameters) {
             String date = LocalDateTime.now().format(dateTimeFormatter);
-            return new JobParametersBuilder().addString("date", date).toJobParameters();
+            return new JobParametersBuilder(parameters).addString("date", date).toJobParameters();
         }
     }
 

@@ -29,4 +29,5 @@ public class JobRunner implements ApplicationRunner {
             .toJobParameters();
         jobLauncher.run(job, parameter);
     }
+
 }
