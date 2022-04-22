@@ -1,14 +1,10 @@
 package me.youzheng.springbatch.step.tasklet;
 
-import java.util.Optional;
-import jdk.nashorn.internal.runtime.options.Option;
 import org.springframework.batch.core.StepContribution;
 import org.springframework.batch.core.scope.context.ChunkContext;
 import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.item.ExecutionContext;
 import org.springframework.batch.repeat.RepeatStatus;
-import org.springframework.data.relational.core.sql.In;
-import org.springframework.data.util.Optionals;
 
 public class CustomTasklet implements Tasklet {
 

@@ -6,7 +6,6 @@ import org.springframework.batch.core.repository.support.JobRepositoryFactoryBea
 import org.springframework.boot.autoconfigure.batch.BasicBatchConfigurer;
 import org.springframework.boot.autoconfigure.batch.BatchProperties;
 import org.springframework.boot.autoconfigure.transaction.TransactionManagerCustomizers;
-import org.springframework.context.annotation.Configuration;
 
 //@Configuration
 public class CustomBatchConfigure extends BasicBatchConfigurer {

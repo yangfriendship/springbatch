@@ -12,8 +12,10 @@ import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 
-//@Configuration
+@Profile("basicStep")
+@Configuration
 @RequiredArgsConstructor
 public class StepConfiguration {
 
@@ -22,8 +24,8 @@ public class StepConfiguration {
 
     /**
      * 1. Job -> Step(in List) -> Tasklet 으로 호출 실행
-     * */
-    //@Bean
+     */
+    @Bean
     public Job job() {
         return jobBuilderFactory.get("taskletConfigJob")
             .start(step1())
@@ -33,25 +35,25 @@ public class StepConfiguration {
             .build();
     }
 
-    //@Bean
+    @Bean
     public Step step1() {
         return this.stepBuilderFactory.get("step1")
             .tasklet(new CustomTasklet(1)).build();
     }
 
-    //@Bean
+    @Bean
     public Step step2() {
         return this.stepBuilderFactory.get("step2")
             .tasklet(new CustomTasklet(2)).build();
     }
 
-    //@Bean
+    @Bean
     public Step step3() {
         return this.stepBuilderFactory.get("step3")
             .tasklet(new CustomTasklet(3)).build();
     }
 
-    //@Bean
+    @Bean
     public Step step4() {
         return this.stepBuilderFactory.get("step4")
             .tasklet(new Tasklet() {
