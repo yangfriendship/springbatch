@@ -16,7 +16,7 @@ import lombok.ToString;
 public class Customer {
 
     private String name;
-    private String age;
-    private String year;
+    private Integer age;
+    private Integer year;
 
 }
