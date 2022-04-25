@@ -36,3 +36,7 @@ spring:
     job:
 #      enabled: false
       names: ${job.name:NONE}
+  jpa:
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
