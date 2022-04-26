@@ -60,6 +60,7 @@ public class StaxEventItemWriterConfig {
             .marshaller(xStreamMarshaller())
             .resource(new FileSystemResource(
                 "/Users/youzheng/workspace/study/batch/springbatch/src/main/resources/dist/customer.xml"))
+            // item 을 감싸고 있는 xml tag 이름
             .rootTagName("customer")
             .build();
     }
