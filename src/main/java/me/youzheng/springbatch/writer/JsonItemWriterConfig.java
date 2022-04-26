@@ -51,7 +51,7 @@ public class JsonItemWriterConfig {
             .name("jsonWriter")
             .jsonObjectMarshaller(jsonMarshaller())
             .resource(new FileSystemResource(
-                "/Users/youzheng/workspace/study/batch/springbatch/src/main/resources/dist/customer.json"))
+                "/Users/youzheng/workspace/study/batch/springbatch/src/main/resources/dist/customer.txt"))
             .build();
     }
 
