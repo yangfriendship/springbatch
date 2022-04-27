@@ -1,4 +1,4 @@
-package me.youzheng.springbatch.repeat;
+package me.youzheng.springbatch.retry;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -93,14 +93,4 @@ public class RetryConfig {
         }
     }
 
-    public class CustomRetryException extends RuntimeException {
-
-        public CustomRetryException() {
-            super();
-        }
-
-        public CustomRetryException(String message) {
-            super(message);
-        }
-    }
 }
