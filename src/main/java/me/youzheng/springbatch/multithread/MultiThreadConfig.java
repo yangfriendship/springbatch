@@ -26,10 +26,12 @@ import org.springframework.batch.integration.async.AsyncItemProcessor;
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.ItemWriter;
+import org.springframework.batch.item.database.JdbcPagingItemReader;
 import org.springframework.batch.item.database.Order;
 import org.springframework.batch.item.database.PagingQueryProvider;
 import org.springframework.batch.item.database.builder.JdbcBatchItemWriterBuilder;
 import org.springframework.batch.item.database.builder.JdbcPagingItemReaderBuilder;
+import org.springframework.batch.item.database.support.MySqlPagingQueryProvider;
 import org.springframework.batch.item.database.support.SqlPagingQueryProviderFactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -196,8 +198,7 @@ public class MultiThreadConfig {
 
     @Bean
     public PagingQueryProvider createQueryProvider() {
-        SqlPagingQueryProviderFactoryBean factoryBean = new SqlPagingQueryProviderFactoryBean();
-        factoryBean.setDataSource(this.dataSource);
+        MySqlPagingQueryProvider factoryBean = new MySqlPagingQueryProvider();
         factoryBean.setSelectClause("id, firstName, lastName, birthdate");
         factoryBean.setFromClause("from customer");
         factoryBean.setWhereClause("where lastName like :lastName");
@@ -205,7 +206,7 @@ public class MultiThreadConfig {
         sortKey.put("id", Order.ASCENDING);
         factoryBean.setSortKeys(sortKey);
         try {
-            return factoryBean.getObject();
+            return factoryBean;
         } catch (Exception e) {
             throw new RuntimeException("PagingQueryProvider 생성 실패");
         }
