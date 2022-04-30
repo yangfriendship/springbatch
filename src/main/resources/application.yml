@@ -1,6 +1,9 @@
+<<<<<<< HEAD
 
 # jdbc:mysql://localhost:3306/springbatch
 
+=======
+>>>>>>> origin/practice
 spring:
   profiles:
     active: local
