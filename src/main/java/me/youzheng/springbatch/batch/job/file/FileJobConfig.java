@@ -51,7 +51,7 @@ public class FileJobConfig {
     @StepScope
     @Bean
     public FlatFileItemReader<ProductVo> fileItemReader(
-        @Value("#{jobParameters['reuqestDate']}") String requestDate) {
+        @Value("#{jobParameters['requestDate']}") String requestDate) {
         return new FlatFileItemReaderBuilder<ProductVo>()
             .name("flatFileReader")
             .resource(new ClassPathResource("product_" + requestDate + ".csv"))
