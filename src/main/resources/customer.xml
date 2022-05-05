@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<customers>
+  <customer>
+    <name>user1</name>
+    <age>29</age>
+    <year>1</year>
+  </customer>
+  <customer>
+    <name>user2</name>
+    <age>29</age>
+    <year>1</year>
+  </customer>
+  <customer>
+    <name>user3</name>
+    <age>29</age>
+    <year>1</year>
+  </customer>
+  <customer>
+    <name>user4</name>
+    <age>29</age>
+    <year>1</year>
+  </customer>
+  <customer>
+    <name>user5</name>
+    <age>29</age>
+    <year>1</year>
+  </customer>
+</customers>
